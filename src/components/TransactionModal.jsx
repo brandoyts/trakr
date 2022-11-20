@@ -10,7 +10,7 @@ export default function TransactionModal() {
 	const handleRegister = () => {
 		const user = {
 			name: "brando",
-			email: "ggfgs2@mail.com",
+			email: "g22@mail.com",
 			password: "test123",
 		};
 

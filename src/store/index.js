@@ -1,13 +1,13 @@
 import create from "zustand";
-import { register } from "../utils/auth";
 
 const useAppStore = create((set, get) => ({
 	user: {},
-	isLoggedIn: true,
+	isLoggedIn: false,
 	balance: 0,
 	income: 0,
 	expenses: 0,
 	isModalOpen: false,
+	form: "login",
 
 	toggleModal: () => set((state) => ({ isModalOpen: !state.isModalOpen })),
 
@@ -25,18 +25,10 @@ const useAppStore = create((set, get) => ({
 		}));
 	},
 
-	register: async (payload) => {
-		console.log("register");
-		const user = await register(
-			"Brando Endona",
-			"lopli@gmail.com",
-			"secret123"
-		);
-
-		// set((state) => ({
-		// 	expenses: state.expenses + 3,
-		// 	balance: state.balance - state.expenses,
-		// }));
+	switchForm: (payload) => {
+		set((state) => ({
+			form: payload,
+		}));
 	},
 }));
 

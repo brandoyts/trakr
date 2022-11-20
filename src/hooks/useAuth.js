@@ -6,42 +6,49 @@ import {
 	signInWithEmailAndPassword,
 	updateProfile,
 	onAuthStateChanged,
+	signOut,
 } from "firebase/auth";
 
 const useAuth = () => {
 	const [error, setError] = useState(null);
+	const [isLoading, setIsLoading] = useState(true);
 	const [user, setUser] = useState(null);
 
 	const auth = getAuth(firebaseApp);
 
 	useEffect(() => {
-		onAuthStateChanged(auth, (user) => setUser(user));
+		onAuthStateChanged(auth, (user) =>
+			setUser({
+				displayName: user?.displayName,
+				email: user?.email,
+			})
+		);
+		setIsLoading(false);
 	}, []);
-
-	console.log(user);
 
 	const register = async (user) => {
 		try {
-			const newUser = await createUserWithEmailAndPassword(
-				auth,
-				user.email,
-				user.password
-			);
+			await createUserWithEmailAndPassword(auth, user.email, user.password);
 
 			// update new user's displayName
-			updateProfile(auth.currentUser, {
+			await updateProfile(auth.currentUser, {
 				displayName: user.name,
 			});
 
-			// console.log(newUser);
+			setIsLoading(false);
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
+	const logout = () => {
+		signOut(auth);
+	};
+
 	return {
 		user,
 		register,
+		logout,
 	};
 };
 
