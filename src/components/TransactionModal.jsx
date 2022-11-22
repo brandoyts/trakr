@@ -1,21 +1,9 @@
 import React from "react";
 import useStore from "../store";
-import useAuth from "../hooks/useAuth";
 
 export default function TransactionModal() {
 	const toggleModal = useStore((state) => state.toggleModal);
 	const isModalOpen = useStore((state) => state.isModalOpen);
-	const { register } = useAuth();
-
-	const handleRegister = () => {
-		const user = {
-			name: "brando",
-			email: "g22@mail.com",
-			password: "test123",
-		};
-
-		register(user);
-	};
 
 	return (
 		<div
@@ -31,10 +19,7 @@ export default function TransactionModal() {
 				>
 					Cancel
 				</button>
-				<button
-					onClick={handleRegister}
-					className="bg-green-500 p-2 rounded-md w-[100px] font-bold text-lg text-white"
-				>
+				<button className="bg-green-500 p-2 rounded-md w-[100px] font-bold text-lg text-white">
 					Save
 				</button>
 			</div>

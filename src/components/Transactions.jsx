@@ -13,7 +13,6 @@ export default function Transactions() {
 
 	useEffect(() => {
 		useStore.setState({ balance: +income });
-		// useStore.setState({ balance: -expenses });
 	}, [income, expenses]);
 
 	const handleAddIncome = () => {

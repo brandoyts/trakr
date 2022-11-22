@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import useStore from "../store";
-import { Navigate, useLocation } from "react-router-dom";
+import React from "react";
+import { Navigate } from "react-router-dom";
+import useAppStore from "../store";
 
 export default function ProtectedRoute({ children }) {
-	const isLoggedIn = useStore((state) => state.isLoggedIn);
+	const user = useAppStore((state) => state.user);
 
-	if (!isLoggedIn) return <Navigate to="/auth" replace />;
+	if (!user) return <Navigate to="/auth" replace={true} />;
 
 	return children;
 }

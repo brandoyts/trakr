@@ -1,11 +1,14 @@
 import React from "react";
-import useAuth from "../hooks/useAuth";
+import useFirebaseAuth from "../hooks/useFirebaseAuth";
+import useAppStore from "../store";
 
 export default function Nav() {
-	const { logout, user } = useAuth();
+	const user = useAppStore((state) => state.user);
+	const { logout } = useFirebaseAuth();
+
 	return (
 		<nav className="flex justify-between pt-10 ">
-			<span className="font-bold text-3xl text-gray-400">
+			<span className="font-bold text-xl text-gray-400">
 				Hi {user?.displayName}👋
 			</span>
 

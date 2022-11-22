@@ -14,7 +14,6 @@ export default function Home() {
 		<>
 			{isModalOpen && <AppOverlay />}
 			{isModalOpen && <TransactionModal />}
-			<TransactionModal />
 			<AppWrapper>
 				<Nav />
 				<BalanceCard />

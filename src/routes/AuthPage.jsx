@@ -1,22 +1,29 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 import Login from "../components/Auth/Login";
 import Register from "../components/Auth/Register";
-import useStore from "../store";
+import Loader from "../components/Loader";
+import useAppStore from "../store";
+import useFirebaseAuth from "../hooks/useFirebaseAuth";
 
 export default function AuthPage() {
-	const isLoggedIn = useStore((state) => state.isLoggedIn);
-	const form = useStore((state) => state.form);
+	const form = useAppStore((state) => state.form);
+	const user = useAppStore((state) => state.user);
+	const { authLoading } = useFirebaseAuth();
 
-	if (isLoggedIn) return <Navigate to="/" replace />;
-
-	const renderForm = () => {
+	const renderForm = useCallback(() => {
 		if (form === "login") {
 			return <Login />;
 		}
 
 		return <Register />;
-	};
+	}, [form]);
+
+	if (authLoading) return <Loader />;
+
+	if (user) {
+		return <Navigate to="/" replace={true} />;
+	}
 
 	return (
 		<>

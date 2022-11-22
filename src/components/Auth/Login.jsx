@@ -1,15 +1,29 @@
-import React from "react";
-import useStore from "../../store/index";
+import React, { useRef } from "react";
+import useFirebaseAuth from "../../hooks/useFirebaseAuth";
+import useAppStore from "../../store/index";
 
 export default function Login() {
-	const switchForm = useStore((state) => state.switchForm);
+	const emailRef = useRef(null);
+	const passwordRef = useRef(null);
+	const switchForm = useAppStore((state) => state.switchForm);
+	const { signin } = useFirebaseAuth();
+
+	const onSubmit = (e) => {
+		e.preventDefault();
+		signin(emailRef.current.value, passwordRef.current.value);
+	};
 
 	return (
 		<div className="flex-1 p-5">
-			<form action="#" className="flex flex-col gap-5">
+			<form onSubmit={onSubmit} className="flex flex-col gap-5">
 				<div className="form-group flex flex-col gap-2">
 					<label htmlFor="email">Email:</label>
-					<input className="border-2 rounded-md p-2" type="text" id="email" />
+					<input
+						className="border-2 rounded-md p-2"
+						type="text"
+						id="email"
+						ref={emailRef}
+					/>
 				</div>
 				<div className="form-group flex flex-col gap-2">
 					<label htmlFor="password">password:</label>
@@ -17,6 +31,7 @@ export default function Login() {
 						className="border-2 rounded-md p-2"
 						type="password"
 						id="password"
+						ref={passwordRef}
 					/>
 				</div>
 				<div className="form-group flex flex-col gap-2">

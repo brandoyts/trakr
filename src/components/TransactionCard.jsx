@@ -9,28 +9,25 @@ export default function TransactionCard({ type }) {
 			case "income":
 				return (
 					<span className="bg-orange-400 rounded-full p-3 text-4xl text-white">
-						<CiMoneyBill />
+						{/* <CiMoneyBill /> */}
 					</span>
 				);
-
 			case "food":
 				return (
 					<span className="bg-pink-400 rounded-full p-3 text-4xl text-white">
-						<MdOutlineFastfood />
+						{/* <MdOutlineFastfood /> */}
 					</span>
 				);
-
 			case "home":
 				return (
 					<span className="bg-yellow-400 rounded-full p-3 text-4xl text-white">
-						<GoHome />
+						{/* <GoHome /> */}
 					</span>
 				);
-
 			case "entertainment":
 				return (
 					<span className="bg-red-400 rounded-full p-3 text-4xl text-white">
-						<MdOutlineToys />
+						{/* <MdOutlineToys /> */}
 					</span>
 				);
 			default:
