@@ -20,7 +20,7 @@ const useExpesnseTracker = () => {
 	const getTransactions = async () => {
 		const transactionsRef = await collection(db, "users/transactions").get();
 
-		console.log(transactionsRef);
+		console.log(transactionsRef, "test");
 	};
 
 	return {
