@@ -10,6 +10,9 @@ export default function Login() {
 
 	const onSubmit = (e) => {
 		e.preventDefault();
+		if (emailRef.current.value === "" || passwordRef.current.value === "")
+			return;
+
 		signin(emailRef.current.value, passwordRef.current.value);
 	};
 

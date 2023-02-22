@@ -24,7 +24,7 @@ const useFirebaseAuth = () => {
 		});
 
 		return () => unlisten();
-	}, []);
+	}, [setUser]);
 
 	const signup = async (user) => {
 		try {
@@ -51,7 +51,7 @@ const useFirebaseAuth = () => {
 			setUser(user);
 		} catch (error) {
 			setUser(null);
-			console.log(error);
+			console.log(error, "error");
 		} finally {
 			setAuthLoading(false);
 		}

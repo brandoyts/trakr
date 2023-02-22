@@ -7,6 +7,13 @@ const useAppStore = create((set, get) => ({
 	isModalOpen: false,
 	form: "login",
 	user: null,
+	categories: new Set(),
+
+	setCategories: (payload) => {
+		set((state) => ({
+			categories: payload,
+		}));
+	},
 
 	toggleModal: () => set((state) => ({ isModalOpen: !state.isModalOpen })),
 
