@@ -1,4 +1,4 @@
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { getFirestore, collection, getDocs, doc } from "firebase/firestore";
 import firebaseApp from "../firebase";
 import useAppStore from "../store";
 const db = getFirestore(firebaseApp);
@@ -17,8 +17,15 @@ const useExpesnseTracker = () => {
 		setCategories(_categories);
 	};
 
+	const getTransactions = async () => {
+		const transactionsRef = await collection(db, "users/transactions").get();
+
+		console.log(transactionsRef);
+	};
+
 	return {
 		getCategories,
+		getTransactions,
 	};
 };
 

@@ -7,7 +7,14 @@ const useAppStore = create((set, get) => ({
 	isModalOpen: false,
 	form: "login",
 	user: null,
-	categories: new Set(),
+	categories: [],
+	transactions: [],
+
+	setTransactions: (payload) => {
+		set((state) => ({
+			transactions: payload,
+		}));
+	},
 
 	setCategories: (payload) => {
 		set((state) => ({

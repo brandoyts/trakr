@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import AppOverlay from "../components/AppOverlay";
+// import AppOverlay from "../components/AppOverlay";
 import AppWrapper from "../components/AppWrapper";
 import BalanceCard from "../components/BalanceCard";
 import Nav from "../components/Nav";
@@ -18,7 +18,7 @@ export default function Home() {
 
 	return (
 		<>
-			{isModalOpen && <AppOverlay />}
+			{/* {isModalOpen && <AppOverlay />} */}
 			{isModalOpen && <TransactionModal />}
 			<AppWrapper>
 				<Nav />

@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import TransactionCard from "./TransactionCard";
 import useStore from "../store";
+import useExpesnseTracker from "../hooks/useExpenseTracker";
 
 export default function Transactions() {
 	const addIncome = useStore((state) => state.addIncome);
 	const addExpense = useStore((state) => state.addExpense);
+	const { getTransactions } = useExpesnseTracker();
 
 	const income = useStore((state) => state.income);
 	const expenses = useStore((state) => state.expenses);
@@ -13,6 +15,7 @@ export default function Transactions() {
 
 	useEffect(() => {
 		useStore.setState({ balance: +income });
+		getTransactions();
 	}, [income, expenses]);
 
 	const handleAddIncome = () => {
