@@ -19,6 +19,8 @@ export default function Login() {
 				<div className="form-group flex flex-col gap-2">
 					<label htmlFor="email">Email:</label>
 					<input
+						autoComplete="off"
+						aria-autocomplete="none"
 						className="border-2 rounded-md p-2"
 						type="text"
 						id="email"

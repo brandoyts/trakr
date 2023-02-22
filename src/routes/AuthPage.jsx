@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { useNavigate, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import Login from "../components/Auth/Login";
 import Register from "../components/Auth/Register";
 import Loader from "../components/Loader";
@@ -19,7 +19,7 @@ export default function AuthPage() {
 		return <Register />;
 	}, [form]);
 
-	if (authLoading) return <Loader />;
+	if (!user && authLoading) return <Loader />;
 
 	if (user) {
 		return <Navigate to="/" replace={true} />;

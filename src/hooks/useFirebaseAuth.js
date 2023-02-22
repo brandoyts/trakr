@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import useAppStore from "../store";
 import firebaseApp from "../firebase";
 import {
 	getAuth,
@@ -8,8 +9,6 @@ import {
 	signOut,
 	onAuthStateChanged,
 } from "firebase/auth";
-import useAppStore from "../store";
-import { useEffect } from "react";
 
 export const auth = getAuth(firebaseApp);
 
@@ -48,7 +47,6 @@ const useFirebaseAuth = () => {
 
 	const signin = async (email, password) => {
 		try {
-			// setAuthLoading(true);
 			const user = await signInWithEmailAndPassword(auth, email, password);
 			setUser(user);
 		} catch (error) {
