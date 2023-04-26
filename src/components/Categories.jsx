@@ -1,5 +1,5 @@
-import React from "react";
-import useAppStore from "../store";
+import React from 'react';
+import useAppStore from '../store';
 
 const Categories = () => {
 	const categories = useAppStore((state) => state.categories);
@@ -14,10 +14,10 @@ const Categories = () => {
 			</option>
 		));
 	};
+
 	return (
 		<select name="categories" id="categories" className="border w-full">
 			<option value="">Select a category</option>
-
 			{renderCategories()}
 		</select>
 	);

@@ -1,13 +1,13 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter } from "react-router-dom";
-import { mountStoreDevtool } from "simple-zustand-devtools";
-import useAppStore from "./store";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import { mountStoreDevtool } from 'simple-zustand-devtools';
+import App from './App';
+import './index.css';
+import reportWebVitals from './reportWebVitals';
+import useAppStore from './store';
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
 		<BrowserRouter>
 			<App />
@@ -15,8 +15,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 	</React.StrictMode>
 );
 
-if (process.env.NODE_ENV === "development") {
-	mountStoreDevtool("Store", useAppStore);
+if (process.env.NODE_ENV === 'development') {
+	mountStoreDevtool('Store', useAppStore);
 }
 
 // If you want to start measuring performance in your app, pass a function

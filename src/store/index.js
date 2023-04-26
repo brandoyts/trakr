@@ -1,11 +1,11 @@
-import create from "zustand";
+import create from 'zustand';
 
 const useAppStore = create((set, get) => ({
 	balance: 0,
 	income: 0,
 	expenses: 0,
 	isModalOpen: false,
-	form: "login",
+	form: 'login',
 	user: null,
 	categories: [],
 	transactions: [],
@@ -33,7 +33,6 @@ const useAppStore = create((set, get) => ({
 	setUser: (payload) => {
 		set((state) => ({
 			user: payload,
-			// form: "login",
 		}));
 	},
 }));

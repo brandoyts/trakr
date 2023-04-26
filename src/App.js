@@ -1,30 +1,23 @@
-import { Routes, Route } from "react-router-dom";
-import Home from "./routes/Home";
-import AuthPage from "./routes/AuthPage";
-import ErrorPage from "./routes/ErrorPage";
-import ProtectedRoute from "./routes/ProtectedRoute";
-import AppOverlay from "./components/AppOverlay";
-import useAppStore from "./store";
+import { Route, Routes } from 'react-router-dom';
+import AppOverlay from './components/AppOverlay';
+import AuthPage from './routes/AuthPage';
+import ErrorPage from './routes/ErrorPage.jsx';
+import Home from './routes/Home';
+import ProtectedRoute from './routes/ProtectedRoute';
+import useAppStore from './store';
 
 function App() {
 	const isModalOpen = useAppStore((state) => state.isModalOpen);
-
+	const user = useAppStore((state) => state.user);
 	return (
 		<div className="App">
 			{isModalOpen && <AppOverlay />}
 			<Routes>
 				<Route
-					index
-					element={
-						<ProtectedRoute>
-							<Home />
-						</ProtectedRoute>
-					}
-				/>
-				<Route
+					exact
 					path="/"
 					element={
-						<ProtectedRoute>
+						<ProtectedRoute user={user}>
 							<Home />
 						</ProtectedRoute>
 					}

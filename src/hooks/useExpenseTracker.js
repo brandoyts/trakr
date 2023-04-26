@@ -1,31 +1,52 @@
-import { getFirestore, collection, getDocs, doc } from "firebase/firestore";
-import firebaseApp from "../firebase";
-import useAppStore from "../store";
+import {
+	collection,
+	getDocs,
+	getFirestore,
+	query,
+	where,
+} from 'firebase/firestore';
+import firebaseApp from '../firebase';
+import useAppStore from '../store';
 const db = getFirestore(firebaseApp);
 
 const useExpesnseTracker = () => {
 	const setCategories = useAppStore((state) => state.setCategories);
+	const setTransactions = useAppStore((state) => state.setTransactions);
+	const user = useAppStore((state) => state.user);
 
 	const getCategories = async () => {
-		const querySnapshot = await getDocs(collection(db, "categories"));
+		const querySnapshot = await getDocs(collection(db, 'categories'));
 
-		const _categories = new Set();
+		const categories = new Set();
 		querySnapshot.forEach((doc) => {
-			_categories.add(doc.data().name);
+			categories.add(doc.data().name);
 		});
 
-		setCategories(_categories);
+		setCategories(categories);
 	};
 
 	const getTransactions = async () => {
-		const transactionsRef = await collection(db, "users/transactions").get();
+		const q = query(
+			collection(db, 'transactions'),
+			where('user', '==', user.uid)
+		);
+		const querySnapshot = await getDocs(q);
 
-		console.log(transactionsRef, "test");
+		const transactions = [];
+
+		querySnapshot.forEach((doc) => {
+			transactions.push({ id: doc.id, ...doc.data() });
+		});
+
+		setTransactions(transactions);
 	};
+
+	const calculateBalance = async () => {};
 
 	return {
 		getCategories,
 		getTransactions,
+		calculateBalance,
 	};
 };
 

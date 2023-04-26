@@ -1,11 +1,8 @@
-import React from "react";
-import { Navigate } from "react-router-dom";
-import useAppStore from "../store";
+import React from 'react';
+import { Navigate } from 'react-router-dom';
 
-export default function ProtectedRoute({ children }) {
-	const user = useAppStore((state) => state.user);
-
-	if (!user) return <Navigate to="/auth" replace={true} />;
+export default function ProtectedRoute({ user, children }) {
+	if (!user) return <Navigate to="/auth" replace />;
 
 	return children;
 }

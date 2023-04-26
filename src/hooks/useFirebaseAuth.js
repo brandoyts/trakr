@@ -1,14 +1,14 @@
-import { useState, useEffect } from "react";
-import useAppStore from "../store";
-import firebaseApp from "../firebase";
 import {
-	getAuth,
 	createUserWithEmailAndPassword,
-	signInWithEmailAndPassword,
-	updateProfile,
-	signOut,
+	getAuth,
 	onAuthStateChanged,
-} from "firebase/auth";
+	signInWithEmailAndPassword,
+	signOut,
+	updateProfile,
+} from 'firebase/auth';
+import { useEffect, useState } from 'react';
+import firebaseApp from '../firebase';
+import useAppStore from '../store';
 
 export const auth = getAuth(firebaseApp);
 
@@ -41,7 +41,7 @@ const useFirebaseAuth = () => {
 			setUser(null);
 		} finally {
 			setAuthLoading(false);
-			switchForm("login");
+			switchForm('login');
 		}
 	};
 
@@ -51,7 +51,7 @@ const useFirebaseAuth = () => {
 			setUser(user);
 		} catch (error) {
 			setUser(null);
-			console.log(error, "error");
+			console.log(error, 'error');
 		} finally {
 			setAuthLoading(false);
 		}

@@ -1,5 +1,5 @@
-import React from "react";
-import useStore from "../store";
+import React from 'react';
+import useStore from '../store';
 
 export default function BalanceCard() {
 	const balance = useStore((state) => state.balance);

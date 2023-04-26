@@ -1,6 +1,6 @@
-import React, { useRef } from "react";
-import useFirebaseAuth from "../../hooks/useFirebaseAuth";
-import useAppStore from "../../store/index";
+import React, { useRef } from 'react';
+import useFirebaseAuth from '../../hooks/useFirebaseAuth';
+import useAppStore from '../../store/index';
 
 export default function Login() {
 	const emailRef = useRef(null);
@@ -10,7 +10,7 @@ export default function Login() {
 
 	const onSubmit = (e) => {
 		e.preventDefault();
-		if (emailRef.current.value === "" || passwordRef.current.value === "")
+		if (emailRef.current.value === '' || passwordRef.current.value === '')
 			return;
 
 		signin(emailRef.current.value, passwordRef.current.value);
@@ -45,9 +45,9 @@ export default function Login() {
 					</button>
 				</div>
 				<span className="text-sm text-gray-500">
-					Dont have an account yet?{" "}
+					Dont have an account yet?{' '}
 					<span
-						onClick={() => switchForm("register")}
+						onClick={() => switchForm('register')}
 						className="cursor-pointer text-green-700"
 					>
 						Register here!

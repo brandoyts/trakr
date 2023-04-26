@@ -1,10 +1,10 @@
-import React, { useCallback } from "react";
-import { Navigate } from "react-router-dom";
-import Login from "../components/Auth/Login";
-import Register from "../components/Auth/Register";
-import Loader from "../components/Loader";
-import useAppStore from "../store";
-import useFirebaseAuth from "../hooks/useFirebaseAuth";
+import React, { useCallback } from 'react';
+import { Navigate } from 'react-router-dom';
+import Login from '../components/Auth/Login';
+import Register from '../components/Auth/Register';
+import Loader from '../components/Loader';
+import useFirebaseAuth from '../hooks/useFirebaseAuth';
+import useAppStore from '../store';
 
 export default function AuthPage() {
 	const form = useAppStore((state) => state.form);
@@ -12,9 +12,7 @@ export default function AuthPage() {
 	const { authLoading } = useFirebaseAuth();
 
 	const renderForm = useCallback(() => {
-		if (form === "login") {
-			return <Login />;
-		}
+		if (form === 'login') return <Login />;
 
 		return <Register />;
 	}, [form]);

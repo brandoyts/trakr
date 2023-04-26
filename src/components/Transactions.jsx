@@ -1,30 +1,37 @@
-import React, { useEffect } from "react";
-import TransactionCard from "./TransactionCard";
-import useStore from "../store";
-import useExpesnseTracker from "../hooks/useExpenseTracker";
+import React, { useCallback, useEffect } from 'react';
+import useStore from '../store';
+import TransactionCard from './TransactionCard';
 
 export default function Transactions() {
-	const addIncome = useStore((state) => state.addIncome);
-	const addExpense = useStore((state) => state.addExpense);
-	const { getTransactions } = useExpesnseTracker();
-
-	const income = useStore((state) => state.income);
-	const expenses = useStore((state) => state.expenses);
+	const transactions = useStore((state) => state.transactions);
 
 	const toggleModal = useStore((state) => state.toggleModal);
 
 	useEffect(() => {
-		useStore.setState({ balance: +income });
-		getTransactions();
-	}, [income, expenses]);
+		console.log(transactions, 'asdasd');
 
-	const handleAddIncome = () => {
-		addIncome();
-	};
+		// const income = transactions
+		// 	.filter((transaction) => transaction.category === 'Income')
+		// 	.map((transaction) => transaction.amount)
+		// 	.reduce((a, b) => a + b);
 
-	const handleAddExpense = () => {
-		addExpense();
-	};
+		// // const expense = transactions
+		// // 	.filter((transaction) => transaction.category != 'Income')
+		// // 	.map((transaction) => transaction.amount)
+		// // 	.reduce((a, b) => a + b);
+		// console.log(income);
+		useStore.setState({ balance: -520 });
+	}, []);
+
+	const renderTransactionCards = useCallback(() => {
+		return transactions.map((transaction) => (
+			<TransactionCard
+				key={transaction.id}
+				type={transaction.category}
+				amount={transaction.amount}
+			/>
+		));
+	}, [transactions]);
 
 	return (
 		<div className="bg-white p-5 rounded-xl">
@@ -36,16 +43,7 @@ export default function Transactions() {
 				className="flex flex-col gap-4 max-h-[400px] overflow-y-scroll "
 				id="transactions"
 			>
-				<TransactionCard type="income" />
-				<TransactionCard type="food" />
-				<TransactionCard type="entertainment" />
-				<TransactionCard type="home" />
-				<TransactionCard type="entertainment" />
-				<TransactionCard type="home" />
-				<TransactionCard type="food" />
-				<TransactionCard type="food" />
-				<TransactionCard type="home" />
-				<TransactionCard type="food" />
+				{renderTransactionCards()}
 			</div>
 			<div className="flex justify-center mt-5">
 				<button
